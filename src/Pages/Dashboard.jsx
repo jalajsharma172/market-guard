@@ -7,6 +7,8 @@ const Dashboard = () => {
     <div>
       <Navbar />
       <div className="main">
+          {/* <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/metamask-icon.png" alt="meta" /> */}
+      
         <p className='head'>Welcome to the SupplyGuard!</p>
         <p className='subhead'>Let's get you started with marketing</p>
         <div className="manu">

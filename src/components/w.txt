@@ -1,0 +1,65 @@
+// import React, { useState } from 'react';
+// import './Wallet.css'; // Include this CSS file for styling
+
+// function Wallet() {
+//   const [isModalOpen, setIsModalOpen] = useState(false);
+
+//   const openModal = () => setIsModalOpen(true);
+//   const closeModal = () => setIsModalOpen(false);
+
+//   return (
+//     <div>
+//       <button onClick={openModal} style={{ padding: '10px 20px', cursor: 'pointer' }}>Connect Wallet</button>
+
+//       {isModalOpen && (
+//         <div className="modal-overlay">
+          
+//           <div className="modal-container">
+
+//             <div className="modal-header">              <h2>Connect Wallet</h2>
+//               <button onClick={closeModal} className="close-button">&times;</button>
+//             </div>
+
+//             <div className="modal-body">
+//               {/* <div className="input-container">
+//                 <input type="email" placeholder="Email" className="email-input" />
+//               </div> */}
+
+//               <div className="wallet-options">
+//                 <button className="wallet-option">
+//                   <img src="/wallet-icon.png" alt="WalletConnect" className="wallet-icon" />
+//                   WalletConnect through  Mobile 
+//                   <span className="qr-code">QR CODE</span>
+//                 </button>
+
+//                 <button className="wallet-option">
+//                   <img src="/metamask-icon.png" alt="MetaMask" className="wallet-icon" />
+//                   MetaMask <span className="installed-badge">INSTALLED</span>
+//                 </button>
+
+//                 <button className="wallet-option">
+//                   <img src="/metamask-icon.png" alt="MetaMask" className="wallet-icon" />
+//                   MetaMask
+//                 </button>
+
+//                 {/* <button className="wallet-option">
+//                   <img src="/all-wallets-icon.png" alt="All Wallets" className="wallet-icon" />
+//                   All Wallets <span className="wallet-count">more</span>
+//                 </button> */}
+//               </div>
+//             </div>
+
+//             <div className="modal-footer">
+//               <p>
+//                 Problem : <a href="#">Send Feedback</a>
+//               </p>
+//             </div>
+//           </div>
+//         </div>
+//       )
+//       }
+//     </div>
+//   );
+// }
+
+// export default Wallet;

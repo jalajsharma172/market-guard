@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import Navbar from '../components/navbar';
 function UserAccount() {
   // State to store form data
   const [formData, setFormData] = useState({
@@ -33,11 +33,16 @@ function UserAccount() {
 
     // Clear form fields
     setFormData({ name: '', age: '', location: '', phone: '' });
+    alert('Please connect your wallet to proceed further');
   };
 
+  //If Wallet is not connected till now, then alert the user to connect the wallet
+
   return (
+    <>
+    <Navbar />
     <div style={{ maxWidth: '400px', margin: 'auto', padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-      <h2>Manufacturer Account Form</h2>
+      <h2>User Registertation Form</h2>
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: '10px' }}>
           <label htmlFor="name">Name:</label>
@@ -84,7 +89,7 @@ function UserAccount() {
             value={formData.phone}
             onChange={handleChange}
             style={{ width: '100%', padding: '8px', margin: '5px 0' }}
-          />
+            />
         </div>
 
         <button type="submit" style={{ padding: '10px 15px', backgroundColor: '#007BFF', color: '#fff', border: 'none', cursor: 'pointer' }}>
@@ -94,6 +99,7 @@ function UserAccount() {
 
       {message && <p style={{ marginTop: '20px', color: '#28a745' }}>{message}</p>}
     </div>
+            </>
   );
 }
 

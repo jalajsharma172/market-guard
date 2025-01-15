@@ -33,11 +33,13 @@ function ManuAccount() {
 
     // Clear form fields
     setFormData({ name: '', age: '', location: '', phone: '' });
+    alert('Please connect your wallet to proceed further');
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: 'auto', padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+    <>
         <Navbar />
+        <div style={{ maxWidth: '400px', margin: 'auto', padding: '20px', fontFamily: 'Arial, sans-serif' }}>
       <h2>Manufacturer Account Form</h2>
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: '10px' }}>
@@ -95,7 +97,9 @@ function ManuAccount() {
 
       {message && <p style={{ marginTop: '20px', color: '#28a745' }}>{message}</p>}
     </div>
+    </>
   );
+  
 }
 
 export default ManuAccount;
