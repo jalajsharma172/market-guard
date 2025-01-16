@@ -10,6 +10,12 @@
     justify-content: center;
     align-items: center;
 }
+input{
+  width: 96%;
+  height: 35px;
+  margin: 0px;
+  border-radius: 7px;
+}
 .modal-content{
   background-color: rgba(0, 0, 0);
   border: 2px solid black;
@@ -28,6 +34,7 @@
   position: relative; /* Moves the child relative to its normal position */
   left: 90%; /* Moves the child 20px to the right */
   top: 0px; /* Moves the child 10px down */
+  margin: 5px;
 }
 .modal-options{
   margin-top: 10px;
@@ -35,10 +42,7 @@
   flex-direction: column;
   gap: 10px;
   padding: 5px;
-  border-radius: 10px;
-  border: 2px solid rgb(42, 43, 42);
-  background-color: rgb(60, 63, 60);
-  
+  border-radius: 10px;  
 }
 
 .modal-icon{
@@ -46,14 +50,15 @@
   height: 40px;
 }
 .modal-option {
-  background-color: #ffdd57;
-  color: #333;
+  background-color: rgb(60, 63, 60);
+  color:white;
   border: none;
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   font-weight: 600;
   border-radius: 5px;
   cursor: pointer;
+  border: 2px solid black;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 

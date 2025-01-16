@@ -34,7 +34,7 @@ const Home = () => {
                 <div id="dash">
                     <Link to="/dashboard" className='custom-link'>Get Started -&gt;</Link>
                  </div>
-
+        
     
 
             </div>
