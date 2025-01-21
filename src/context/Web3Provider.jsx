@@ -9,7 +9,8 @@ const Web3Provider = ({ children }) => {
   const [web3State, setWeb3State] = useState({
     contractInstance: null,
     selectedAccount: null,
-    chainId: null
+    chainId: null,
+    ensName: null
   });
   
   const handleWallet = async () => {
@@ -17,8 +18,9 @@ const Web3Provider = ({ children }) => {
     try {
       console.log("you clicked");
       
-      const {contractInstance,selectedAccount,chainId} = await getWeb3State();
-              setWeb3State({contractInstance,selectedAccount,chainId})
+      const {contractInstance,selectedAccount,chainId,ensName} = await getWeb3State();
+              setWeb3State({contractInstance,selectedAccount,chainId,ensName})
+      
 
     } catch (error) {
       console.error(error);

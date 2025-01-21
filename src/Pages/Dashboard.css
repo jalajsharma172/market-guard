@@ -7,6 +7,14 @@
     display: flex;  
     margin-right: 30px;
 }
+
+.box{
+    width: 95%;
+    margin: 4px;
+    padding: 22px;
+    border: 1px solid gray;
+    border-radius: 0px;
+}
 svg{
     margin: 0;
 }

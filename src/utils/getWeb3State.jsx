@@ -35,13 +35,15 @@ export const getWeb3State = async () => {
     const signer = provider.getSigner();
 
     // Contract details
-    const contractAddress = "0x5A86858aA3b595FD6663c2296741eF4cd8BC4d01";
+    const contractAddress = "0xEf9f1ACE83dfbB8f559Da621f4aEA72C6EB10eBf";
     const contractInstance = new ethers.Contract(contractAddress, abi, signer);
 
     console.log("Contract Instance: ", contractInstance);
-
-    // Return the contract instance, selected account, and chain ID
-    return { contractInstance, selectedAccount, chainId };
+    // const [ensName, setEnsName] = useState("Not resolved");
+    const ensName = await provider.lookupAddress(selectedAccount);
+        // setEnsName(name || "No ENS name associated");        
+        // Return the contract instance, selected account, and chain ID
+        return { contractInstance, selectedAccount, chainId ,ensName};
   } catch (error) {
     console.error("Error in getWeb3State:", error.message || error);
     alert("An error occurred while fetching Web3 state. Check the console for details.");
