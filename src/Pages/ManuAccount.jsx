@@ -1,105 +1,72 @@
-import React, { useState } from 'react';
-import Navbar from '../components/navbar';
-function ManuAccount() {
-  // State to store form data
-  const [formData, setFormData] = useState({
-    name: '',
-    age: '',
-    location: '',
-    phone: '',
-  });
+import { useRef ,useState,useContext } from "react";
+import Web3Context from "../context/Web3Context";
+import './style/account.css'
+const ManuAccount = ()=>{
 
-  // State to store form submission message
-  const [message, setMessage] = useState('');
+    const {web3State}=useContext(Web3Context)
+    const {contractInstance,selectedAccount}=web3State;
 
-  // Handle input change
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+    const nameRef=useRef(null);
+    const locationRef=useRef(null);
+    const genderRef=useRef(null);
+    const phoneRef=useRef(null);
+    const [message, setMessage] = useState(null);
 
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    const inputReader = async(e)=>{
+        try {
+                e.preventDefault();  //Will Prevent Refereace.
+                const name=nameRef.current.value;
+                const location=locationRef.current.value;
+                const phone = phoneRef.current.value;
+                const gender=genderRef.current.value;3
 
-    // Basic validation
-    if (!formData.name || !formData.age || !formData.location || !formData.phone) {
-      setMessage('Please fill in all the fields.');
-      return;
-    }
+                if(!name || !phone){
+                    alert("Please fill in all the fields");
+                    return;
+                }
+               if(!contractInstance){
+                    alert("Connect Wallet!");
+                    return;
+                }
+                console.log("Manufacturer Address: ", selectedAccount);
+                console.log("Form Data: ", name,phone,location);
+                console.log(contractInstance);
+                await contractInstance.register_for_Manu(name);
+                    setMessage(`Account created successfully for Manufacturer: ${name}.`);
 
-    // Simulate form submission
-    setMessage(`Account created successfully for Manufacturer: ${formData.name}.`);
+            console.log("Registeration is Successfull");
+                
+            } catch (error) {
+                console.error("Registeration NOT Successfull");
+                console.error(error.message );
+            }
+        }
 
-    // Clear form fields
-    setFormData({ name: '', age: '', location: '', phone: '' });
-    alert('Please connect your wallet to proceed further');
-  };
-
-  return (
-    <>
-        <Navbar />
-        <div style={{ maxWidth: '400px', margin: 'auto', padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-      <h2>Manufacturer Account Form</h2>
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: '10px' }}>
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            style={{ width: '100%', padding: '8px', margin: '5px 0' }}
-          />
+    
+    return(
+        <>
+       
+        <div className="form">
+        <h1>Create Manufactuere Account</h1>
+        <form onSubmit={inputReader}>
+            <label>Full Name :
+                <input type="text" ref={nameRef} />
+            </label>
+            <label>Gender :
+                <input type="text" ref={genderRef} />
+            </label>
+            <label>Phone Number :
+                <input type="number" ref={phoneRef} />
+            </label>
+            <label>Location :
+                <input type="text" ref={locationRef} />
+            </label>
+            <button type="submit">Submit it </button>
+        </form>
         </div>
-
-        <div style={{ marginBottom: '10px' }}>
-          <label htmlFor="age">Age:</label>
-          <input
-            type="number"
-            id="age"
-            name="age"
-            value={formData.age}
-            onChange={handleChange}
-            style={{ width: '100%', padding: '8px', margin: '5px 0' }}
-          />
-        </div>
-
-        <div style={{ marginBottom: '10px' }}>
-          <label htmlFor="location">Location:</label>
-          <input
-            type="text"
-            id="location"
-            name="location"
-            value={formData.location}
-            onChange={handleChange}
-            style={{ width: '100%', padding: '8px', margin: '5px 0' }}
-          />
-        </div>
-
-        <div style={{ marginBottom: '10px' }}>
-          <label htmlFor="phone">Phone Number:</label>
-          <input
-            type="text"
-            id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            style={{ width: '100%', padding: '8px', margin: '5px 0' }}
-          />
-        </div>
-
-        <button type="submit" style={{ padding: '10px 15px', backgroundColor: '#007BFF', color: '#fff', border: 'none', cursor: 'pointer' }}>
-          Create Account
-        </button>
-      </form>
-
-      {message && <p style={{ marginTop: '20px', color: '#28a745' }}>{message}</p>}
-    </div>
-    </>
-  );
-  
+        
+        {message && <p style={{ marginTop: '20px', color: '#28a745' }}>{message}</p>}
+        </>
+    )
 }
-
 export default ManuAccount;

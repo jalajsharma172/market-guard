@@ -1,5 +1,8 @@
-import { ethers } from "ethers";
+import { ethers, Wallet } from "ethers";
 import abi from "../contants/abi.json";
+import dotenv from "dotenv";
+
+dotenv.config(); // Load environment variables
 
 // Blockchain Code
 export const getWeb3State = async () => {
@@ -23,30 +26,38 @@ export const getWeb3State = async () => {
     const chainIdHex = await window.ethereum.request({
       method: "eth_chainId",
     });
-
     const chainId = parseInt(chainIdHex, 16); // Convert chainId to decimal
 
     console.log("Account: " + selectedAccount);
     console.log("ChainID: " + chainId);
 
+    // Access the private key from environment variables
+    const privateKey = process.env.PRIVATE_KEY;
+    if (!privateKey) {
+      throw new Error("Environment variable REACT_APP_PRIVATE_KEY is missing.");
+    }
+    console.log("Private Key: " + privateKey);
+
     // Set up the provider using MetaMask's Ethereum provider
-    // const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const provider = new ethers.JsonRpcProvider('https://ethereum-sepolia-rpc.publicnode.com');
-    const signer = provider.getSigner();
+    const provider = new ethers.JsonRpcProvider(
+      "https://ethereum-sepolia-rpc.publicnode.com"
+    );
+
+    // Create a wallet instance with the private key and provider
+    const wallet = new Wallet(privateKey, provider);
 
     // Contract details
-    const contractAddress = "0xEf9f1ACE83dfbB8f559Da621f4aEA72C6EB10eBf";
-    const contractInstance = new ethers.Contract(contractAddress, abi, signer);
+    const contractAddress = "0x38cB7800C3Fddb8dda074C1c650A155154924C73";
+    const contractInstance = new ethers.Contract(contractAddress, abi, wallet);
 
     console.log("Contract Instance: ", contractInstance);
-    // const [ensName, setEnsName] = useState("Not resolved");
+
+    // Resolve ENS name associated with the selected account
     const ensName = await provider.lookupAddress(selectedAccount);
-        // setEnsName(name || "No ENS name associated");        
-        // Return the contract instance, selected account, and chain ID
-        return { contractInstance, selectedAccount, chainId ,ensName};
+
+    return { contractInstance, selectedAccount, chainId, ensName };
   } catch (error) {
     console.error("Error in getWeb3State:", error.message || error);
-    alert("An error occurred while fetching Web3 state. Check the console for details.");
-    throw error; // Re-throw the error to handle it in calling code
+    throw error;
   }
 };

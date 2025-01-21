@@ -14,8 +14,8 @@ function App() {
   const router = createBrowserRouter([
     { path: "/", element: <Home /> },
     { path: "/dashboard", element: <Dashboard /> },
-    { path: "/create/Manu_account", element: <ManuAccount /> },
-    { path: "/create/User_account", element: <UserAccount /> },
+    { path: "/create/Manu_account", element: [<Navbar/>,<ManuAccount />] },
+    { path: "/create/User_account", element: [<Navbar/>,<UserAccount />] },
     {path:"/status",element:[<Navbar/>,<Status/>]}
     ]
 );

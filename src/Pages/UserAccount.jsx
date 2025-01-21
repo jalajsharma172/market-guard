@@ -23,7 +23,7 @@ function UserAccount() {
     e.preventDefault();
 
     // Basic validation
-    if (!formData.name || !formData.age || !formData.location || !formData.phone) {
+    if (!formData.name || !formData.phone) {
       setMessage('Please fill in all the fields.');
       return;
     }
@@ -33,7 +33,12 @@ function UserAccount() {
 
     // Clear form fields
     setFormData({ name: '', age: '', location: '', phone: '' });
-    alert('Please connect your wallet to proceed further');
+    const { web3State } = useContext(Web3Context);
+    const { selectedAccount } = web3State;
+    console.log('Customer Address: ', selectedAccount);
+
+
+    // alert('Please connect your wallet to proceed further');
   };
 
   //If Wallet is not connected till now, then alert the user to connect the wallet
@@ -42,10 +47,10 @@ function UserAccount() {
     <>
     <Navbar />
     <div style={{ maxWidth: '400px', margin: 'auto', padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-      <h2>User Registertation Form</h2>
+      <h2>User Account Form</h2>
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: '10px' }}>
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="name">Full Name:</label>
           <input
             type="text"
             id="name"
