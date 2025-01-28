@@ -7,19 +7,23 @@ import Web3Context from "../context/Web3Context";
 import '../components/Navbar.css';
 
 const Wallet = () => {
-    const { handleWallet, web3State } = useContext(Web3Context);
-    const navigateTo = useNavigate();
-    const { selectedAccount } = web3State;
+  console.log("Wallet Component");
   
-    // Handle navigation when selectedAccount changes
-    useEffect(() => {
-      if (selectedAccount) {
-        navigateTo("/status");
-      }
-    }, [selectedAccount, navigateTo]);
+  const { handleWallet, web3State } = useContext(Web3Context);
+  const navigateTo = useNavigate();
+  const { selectedAccount } = web3State;
+  
+  // Handle navigation when selectedAccount changes
+  useEffect(() => {
+    if (selectedAccount) {
+      navigateTo("/status");
+    }
+  }, [selectedAccount, navigateTo]);
+
   
     return (
-      <div className="modal-option" onClick={handleWallet}>
+      <div className="modal-option" onClick={handleWallet} >
+      {/* <div className="modal-option"  > */}
         <img
           src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/metamask-icon.png"
           alt="metamask-icon"

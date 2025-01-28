@@ -1,11 +1,10 @@
 import { ethers, Wallet } from "ethers";
 import abi from "../contants/abi.json";
-import dotenv from "dotenv";
 
-dotenv.config(); // Load environment variables
 
 // Blockchain Code
 export const getWeb3State = async () => {
+  // const PRIVATE_KEY='';
   try {
     // Check if MetaMask is installed
     if (!window.ethereum) {
@@ -32,7 +31,8 @@ export const getWeb3State = async () => {
     console.log("ChainID: " + chainId);
 
     // Access the private key from environment variables
-    const privateKey = process.env.PRIVATE_KEY;
+    // const privateKey = process.env.PRIVATE_KEY;
+    const privateKey = PRIVATE_KEY;
     if (!privateKey) {
       throw new Error("Environment variable REACT_APP_PRIVATE_KEY is missing.");
     }
@@ -47,7 +47,7 @@ export const getWeb3State = async () => {
     const wallet = new Wallet(privateKey, provider);
 
     // Contract details
-    const contractAddress = "0x38cB7800C3Fddb8dda074C1c650A155154924C73";
+    const contractAddress = "0xb31BA5cDC07A2EaFAF77c95294fd4aE27D04E9CA";
     const contractInstance = new ethers.Contract(contractAddress, abi, wallet);
 
     console.log("Contract Instance: ", contractInstance);

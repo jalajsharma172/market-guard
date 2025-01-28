@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import Web3Context from '../context/Web3Context';
-import './Dashboard.css';
+import './style/Dashboard.css';
+
 const Status = () => {
         const name = "Supply Guard";
         const {handleWallet , web3State} = useContext(Web3Context);

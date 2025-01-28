@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Navbar from '../components/navbar';
 function UserAccount() {
   // State to store form data
   const [formData, setFormData] = useState({
@@ -45,7 +44,6 @@ function UserAccount() {
 
   return (
     <>
-    <Navbar />
     <div style={{ maxWidth: '400px', margin: 'auto', padding: '20px', fontFamily: 'Arial, sans-serif' }}>
       <h2>User Account Form</h2>
       <form onSubmit={handleSubmit}>

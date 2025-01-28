@@ -18,6 +18,7 @@ const Navbar = () => {
     <nav className="navbar">
       {/* Left Side: Icon with Page Link */}
       <div className="navbar-left">
+        
         <Link to="/" className="home">
           <img src="https://cdn-icons-png.flaticon.com/512/6899/6899938.png" alt="Logo" className="navbar-icon" />
           <span className="navbar-title">Supply Guard</span>
@@ -43,16 +44,16 @@ const Navbar = () => {
                     <button className="close-button" onClick={closeModal}>&times; </button>
                     <input type="email" placeholder="Enter your email"    />
                   <div className='modal-options'>
-                    <div className="modal-option">
+                    {/* <div className="modal-option">
                     <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/polygon-matic-icon.png " alt="metamask-icon"  className='modal-icon'/>
-                    Polygon Mainnet</div>
+                    Polygon Mainnet</div> */}
 
                     {/* Connect to Metamask */}
                     <Wallet/>
                  
-                    <div className="modal-option"> 
+                    {/* <div className="modal-option"> 
                     <img src="https://uxwing.com/wp-content/themes/uxwing/download/e-commerce-currency-shopping/cashless-qr-code-payment-icon.png" alt="metamask-icon"  className='modal-icon'/>
-                    Connect thorugh QR Code </div>
+                    Connect thorugh QR Code </div> */}
                  
                   </div>
                   </div>

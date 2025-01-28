@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../components/navbar';
 import { Link } from 'react-router-dom';
-import './dashboard.css'; // Optional: For styling
+import './style/Dashboard.css'
 const Dashboard = () => {
   return (
     <div>
@@ -18,6 +18,13 @@ const Dashboard = () => {
             <Link to="/create/Manu_account" className ='Manu-acc'>Create Manufacturer Account</Link>
             <Link to="/create/User_account" className ='User-acc'>Create User Account</Link>
             </div>
+        </div>
+        <div className="AddProducts">
+          <Link to="/manu/AddProducts" className ='AddProduct'>Add Products</Link>
+        </div>
+        <hr />
+        <div className="ViewProducts">
+            <Link to="/manu/ViewProducts" className ='ViewProduct'>View Products</Link>
         </div>
    
     </div>
