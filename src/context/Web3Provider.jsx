@@ -18,8 +18,8 @@ const Web3Provider = ({ children }) => {
     try {
       console.log("you clicked");
       
-      const {contractInstance,selectedAccount,chainId,ensName} = await getWeb3State();
-              setWeb3State({contractInstance,selectedAccount,chainId,ensName})
+      const {contractInstance,selectedAccount,contract,chainId,ensName} = await getWeb3State();
+              setWeb3State({contractInstance,selectedAccount,contract,chainId,ensName})
       
 
     } catch (error) {

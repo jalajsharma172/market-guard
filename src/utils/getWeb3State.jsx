@@ -4,7 +4,7 @@ import abi from "../contants/abi.json";
 
 // Blockchain Code
 export const getWeb3State = async () => {
-  // const PRIVATE_KEY='';
+  const PRIVATE_KEY='';//Must Your Prinvate Key Here.
   try {
     // Check if MetaMask is installed
     if (!window.ethereum) {
@@ -47,17 +47,18 @@ export const getWeb3State = async () => {
     const wallet = new Wallet(privateKey, provider);
 
     // Contract details
-    const contractAddress = "0xb31BA5cDC07A2EaFAF77c95294fd4aE27D04E9CA";
+    const contractAddress = "0xFd33eca8D6411f405637877c9C7002D321182937";
     const contractInstance = new ethers.Contract(contractAddress, abi, wallet);
 
     console.log("Contract Instance: ", contractInstance);
 
     // Resolve ENS name associated with the selected account
     const ensName = await provider.lookupAddress(selectedAccount);
-
-    return { contractInstance, selectedAccount, chainId, ensName };
+    const contract = new ethers.Contract(contractAddress,abi,provider);
+    return { contractInstance, selectedAccount, contract,chainId, ensName };
   } catch (error) {
     console.error("Error in getWeb3State:", error.message || error);
     throw error;
   }
 };
+

@@ -22,15 +22,25 @@ const Wallet = () => {
 
   
     return (
+      <>
       <div className="modal-option" onClick={handleWallet} >
-      {/* <div className="modal-option"  > */}
         <img
           src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/metamask-icon.png"
           alt="metamask-icon"
           className="modal-icon"
         />
         Connect Metamask Wallet
-      </div>
+      </div>  
+      <div className="modal-option" >
+        <img
+          src=""
+          alt="icon-pending"
+          className="modal-icon"
+        />
+        Connect though QR
+      </div>  
+        
+      </>
     );
   };
   

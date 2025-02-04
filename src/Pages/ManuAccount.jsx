@@ -1,17 +1,19 @@
 import { useRef ,useState,useContext } from "react";
 import Web3Context from "../context/Web3Context";
 import './style/account.css'
+import { useNavigate } from "react-router-dom";
 const ManuAccount = ()=>{
 
     const {web3State}=useContext(Web3Context)
     const {contractInstance,selectedAccount}=web3State;
+    const navigateTo = useNavigate();
 
     const nameRef=useRef(null);
     const locationRef=useRef(null);
     const genderRef=useRef(null);
     const phoneRef=useRef(null);
     const [message, setMessage] = useState(null);
-
+  // Handle navigation when selectedAccount changes
     const inputReader = async(e)=>{
         try {
                 e.preventDefault();  //Will Prevent Refereace.
@@ -19,7 +21,6 @@ const ManuAccount = ()=>{
                 const location=locationRef.current.value;
                 const phone = phoneRef.current.value;
                 const gender=genderRef.current.value;3
-
                 if(!name || !phone){
                     alert("Please fill in all the fields");
                     return;
@@ -35,6 +36,7 @@ const ManuAccount = ()=>{
                     setMessage(`Account created successfully for Manufacturer: ${name}.`);
 
             console.log("Registeration is Successfull");
+            navigateTo("/manu/AddProducts");
                 
             } catch (error) {
                 console.error("Registeration NOT Successfull");
