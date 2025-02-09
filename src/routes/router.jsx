@@ -5,7 +5,7 @@ import Dashboard from '../Pages/Dashboard';
 import ManuAccount from '../Pages/ManuAccount';
 import UserAccount from '../Pages/UserAccount';
 import Status from '../Pages/Status';
-import Navbar from '../components/navbar';
+import Navbar from '../components/Navbar';
 import { createBrowserRouter } from 'react-router-dom';
 import AddProduct from '../Pages/AddProduct';
 import ViewProducts from '../Pages/ViewProducts'

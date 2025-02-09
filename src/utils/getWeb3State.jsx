@@ -1,10 +1,10 @@
 import { ethers, Wallet } from "ethers";
 import abi from "../contants/abi.json";
-
+import { VITE_PRIVATE_KEY, VITE_CONTRACT_ADDRESS } from "../contants/env";
 
 // Blockchain Code
 export const getWeb3State = async () => {
-  const PRIVATE_KEY='';//Must Your Prinvate Key Here.
+  const PRIVATE_KEY = VITE_PRIVATE_KEY;
   try {
     // Check if MetaMask is installed
     if (!window.ethereum) {
@@ -17,45 +17,40 @@ export const getWeb3State = async () => {
     const accounts = await window.ethereum.request({
       method: "eth_requestAccounts",
     });
-
-    // Get the selected account from the MetaMask wallet
     const selectedAccount = accounts[0];
 
-    // Get the chain ID
+    console.log("Account: " + selectedAccount);
+    
+    // Get the chain ID from MetaMask
     const chainIdHex = await window.ethereum.request({
       method: "eth_chainId",
     });
-    const chainId = parseInt(chainIdHex, 16); // Convert chainId to decimal
-
-    console.log("Account: " + selectedAccount);
+    const chainId = parseInt(chainIdHex, 16);
     console.log("ChainID: " + chainId);
 
-    // Access the private key from environment variables
-    // const privateKey = process.env.PRIVATE_KEY;
+    // Access the private key
     const privateKey = PRIVATE_KEY;
     if (!privateKey) {
-      throw new Error("Environment variable REACT_APP_PRIVATE_KEY is missing.");
+      throw new Error("Private key is missing.");
     }
-    console.log("Private Key: " + privateKey);
 
-    // Set up the provider using MetaMask's Ethereum provider
-    const provider = new ethers.JsonRpcProvider(
-      "https://ethereum-sepolia-rpc.publicnode.com"
-    );
+    // Set up the provider using MetaMask's provider
+    const provider = new ethers.BrowserProvider(window.ethereum);
 
     // Create a wallet instance with the private key and provider
     const wallet = new Wallet(privateKey, provider);
 
     // Contract details
-    const contractAddress = "0xFd33eca8D6411f405637877c9C7002D321182937";
+    const contractAddress = VITE_CONTRACT_ADDRESS;
     const contractInstance = new ethers.Contract(contractAddress, abi, wallet);
 
     console.log("Contract Instance: ", contractInstance);
 
     // Resolve ENS name associated with the selected account
     const ensName = await provider.lookupAddress(selectedAccount);
-    const contract = new ethers.Contract(contractAddress,abi,provider);
-    return { contractInstance, selectedAccount, contract,chainId, ensName };
+    const contract = new ethers.Contract(contractAddress, abi, provider);
+    
+    return { contractInstance, selectedAccount, contract, chainId, ensName };
   } catch (error) {
     console.error("Error in getWeb3State:", error.message || error);
     throw error;
